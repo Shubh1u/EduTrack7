@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex">
+  <nav class="sidebar bg-dark text-white p-3">
+    <h4 class="mb-4">EduTrack12</h4>
+    <ul class="nav flex-column">
+      <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('dashboard.dashboard') }}"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('chat.chat') }}"><i class="fa-solid fa-comments"></i> Community Chat</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('attendance.attendance') }}"><i class="fa-solid fa-calendar-check"></i> Attendance</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('practice.practice') }}"><i class="fa-solid fa-code"></i> Practice</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('schedule.schedule') }}"><i class="fa-solid fa-calendar-days"></i> Schedule</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('certificates.certificates') }}"><i class="fa-solid fa-award"></i> Certificates</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('projects.projects') }}"><i class="fa-solid fa-diagram-project"></i> Projects</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('profile.profile') }}"><i class="fa-solid fa-user"></i> Profile</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('cgpa.cgpa') }}"><i class="fa-solid fa-graduation-cap"></i> CGPA</a></li>
+      <li class="nav-item mt-3"><a class="nav-link text-danger" href="{{ url_for('auth.logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+    </ul>
+  </nav>
+  <main class="flex-grow-1 p-4">
+    {% block main %}{% endblock %}
+  </main>
+</div>
+{% endblock %}
