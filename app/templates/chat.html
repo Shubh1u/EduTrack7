@@ -1,0 +1,27 @@
+{% extends 'layout_dashboard.html' %}
+{% block main %}
+<h3>Community Chat</h3>
+<div id="chat-box" class="border rounded p-3 mb-3" style="height:340px; overflow-y:auto;"></div>
+<div class="input-group">
+  <input id="message" type="text" class="form-control" placeholder="Type a message...">
+  <button id="send" class="btn btn-primary">Send</button>
+</div>
+<script>
+  const socket = io();
+  const username = "{{ username }}";
+  socket.emit('join', { user: username });
+
+  socket.on('message', data => {
+    const box = document.getElementById('chat-box');
+    const safeUser = document.createElement('strong');
+    safeUser.innerText = data.user + ': ';
+    const p = document.createElement('p');
+    p.appendChild(safeUser);
+    p.appendChild(document.createTextNode(data.msg));
+    box.appendChild(p);
+    box.scrollTop = box.scrollHeight;
+  });
+
+  document.getElementById('send').onclick = () => {
+    const input = document.getElementById('message');
+    const msg = input.value;
