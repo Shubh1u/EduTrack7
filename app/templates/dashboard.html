@@ -1,0 +1,30 @@
+{% extends 'layout_dashboard.html' %}
+{% block main %}
+<h2>Welcome, {{ username }}</h2>
+<div class="row g-3">
+  <div class="col-md-3">
+    <div class="card shadow-sm p-3">
+      <h6>CGPA</h6>
+      <p class="display-6">{{ cgpa }}</p>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card shadow-sm p-3">
+      <h6>Attendance</h6>
+      <p class="display-6">{{ attendance_pct }}%</p>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card shadow-sm p-3">
+      <h6>Projects</h6>
+      <p class="display-6">{{ projects_count }}</p>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card shadow-sm p-3">
+      <h6>Certificates</h6>
+      <p class="display-6">{{ certs_count }}</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
