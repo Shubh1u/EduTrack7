@@ -1,0 +1,26 @@
+{% extends 'layout_dashboard.html' %}
+{% block main %}
+<h3>Projects</h3>
+<form method="POST" class="mb-4">
+  <input name="title" class="form-control mb-2" placeholder="Project Title" required>
+  <textarea name="description" class="form-control mb-2" placeholder="Description"></textarea>
+  <input name="repo_link" class="form-control mb-2" placeholder="GitHub Link">
+  <button class="btn btn-success">Add Project</button>
+</form>
+
+<div class="row">
+  {% for item in items %}
+  <div class="col-md-6">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5>{{ item.title }}</h5>
+        <p>{{ item.description }}</p>
+        {% if item.repo_link %}
+        <a href="{{ item.repo_link }}" target="_blank">GitHub</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
