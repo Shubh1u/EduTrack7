@@ -1,0 +1,25 @@
+{% extends 'layout_dashboard.html' %}
+{% block main %}
+<h3>Attendance</h3>
+<form method="POST" class="mb-3">
+  <select name="status" class="form-select w-25 d-inline-block">
+    <option value="Present">Present</option>
+    <option value="Absent">Absent</option>
+  </select>
+  <button class="btn btn-success">Mark Today</button>
+</form>
+
+<table class="table table-bordered">
+  <thead>
+    <tr><th>Date</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    {% for record in records %}
+    <tr>
+      <td>{{ record.date.strftime('%Y-%m-%d') }}</td>
+      <td>{{ record.status }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
