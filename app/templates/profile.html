@@ -1,0 +1,28 @@
+{% extends 'layout_dashboard.html' %}
+{% block main %}
+<h3>Profile</h3>
+<form method="POST" enctype="multipart/form-data" class="row g-3">
+  <div class="col-md-6">
+    <label>Username</label>
+    <input name="username" class="form-control" value="{{ user.username }}">
+  </div>
+  <div class="col-md-6">
+    <label>Email</label>
+    <input name="email" type="email" class="form-control" value="{{ user.email }}">
+  </div>
+  <div class="col-md-6">
+    <label>Profile Picture</label>
+    <input name="profile_pic" type="file" class="form-control">
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary">Update Profile</button>
+  </div>
+</form>
+
+{% if user.profile_pic %}
+<div class="mt-4">
+  <h5>Current Profile Picture:</h5>
+  <img src="{{ user.profile_pic }}" class="img-thumbnail" style="max-width:200px;">
+</div>
+{% endif %}
+{% endblock %}
