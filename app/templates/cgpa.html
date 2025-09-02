@@ -1,0 +1,8 @@
+{% extends 'layout_dashboard.html' %}
+{% block main %}
+<h3>CGPA</h3>
+<form method="POST" class="w-25">
+  <input name="cgpa" type="number" step="0.01" min="0" max="10" class="form-control mb-2" value="{{ cgpa }}">
+  <button class="btn btn-success">Update CGPA</button>
+</form>
+{% endblock %}
