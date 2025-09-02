@@ -1,0 +1,28 @@
+{% extends 'layout_dashboard.html' %}
+{% block main %}
+<h3>Certificates</h3>
+<form method="POST" enctype="multipart/form-data" class="mb-4">
+  <div class="row g-2">
+    <div class="col-md-4"><input name="name" class="form-control" placeholder="Certificate Name"></div>
+    <div class="col-md-4"><input name="issued_date" type="date" class="form-control"></div>
+    <div class="col-md-4"><input name="file" type="file" class="form-control"></div>
+  </div>
+  <button class="btn btn-primary mt-2">Upload</button>
+</form>
+
+<div class="row">
+  {% for cert in items %}
+  <div class="col-md-4">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5>{{ cert.name }}</h5>
+        <p>Issued: {{ cert.issued_date }}</p>
+        {% if cert.file_path %}
+        <a href="{{ cert.file_path }}" target="_blank">View File</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
