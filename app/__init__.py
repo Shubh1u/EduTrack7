@@ -4,7 +4,7 @@ from flask_socketio import SocketIO
 from app.config import DevelopmentConfig
 from app.models import db
 
-socketio = SocketIO(cors_allowed_origins="*")  # eventlet/gevent compatible
+socketio = SocketIO(cors_allowed_origins="*",async_mode="threading")  # eventlet/gevent compatible
 
 def create_app():
     app = Flask(__name__)
