@@ -33,6 +33,7 @@ def register():
         username = request.form.get('username', '').strip()
         email = request.form.get('email', '').strip().lower()
         password = request.form.get('password', '')
+
         if not username or not email or not password:
             flash("All fields are required.", "warning")
             return render_template('register.html')
@@ -46,12 +47,22 @@ def register():
             email=email,
             password_hash=generate_password_hash(password)
         )
-        db.session.add(user)
-        db.session.commit()
-        flash("Registered successfully! Please log in.", "success")
-        return redirect(url_for('auth.login'))
-    return render_template('register.html')
 
+        try:
+            db.session.add(user)
+            db.session.commit()
+            flash("Registered successfully! Please log in.", "success")
+            return redirect(url_for('auth.login'))
+        except SQLAlchemyError as e:
+            db.session.rollback()
+            flash(f"Registration failed: {str(e)}", "danger")
+            return render_template('register.html')
+        except Exception as e:
+            db.session.rollback()
+            flash(f"Unexpected error: {str(e)}", "danger")
+            return render_template('register.html')
+
+    return render_template('register.html')
 @auth_bp.route('/logout')
 def logout():
     session.clear()
